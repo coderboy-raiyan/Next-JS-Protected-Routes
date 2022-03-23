@@ -5,17 +5,15 @@ import Link from "next/link";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
-import Layout from "./../components/Layout/Layout";
+import UnauthenticatedLayout from "../components/Layout/UnAuthenticatedLayout";
 import useAuth from "./../hooks/useAuth";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { user, error, googleSignIn, logOut } = useAuth();
-
-  console.log(user);
+  const { user, error, loading, oAuthLoading, googleSignIn } = useAuth();
 
   return (
-    <Layout>
+    <UnauthenticatedLayout>
       <section>
         <div className="flex justify-center bg-gray-100 px-4 py-20">
           <form className="flex w-full flex-col space-y-6 rounded-lg bg-white px-4 py-6 shadow md:w-[500px] lg:w-[500px]">
@@ -43,10 +41,13 @@ const Login = () => {
             </button>
 
             {/* Google sign In */}
-            <button className="rounded border-2 border-green-500 py-2  hover:bg-green-100">
+            <a
+              onClick={googleSignIn}
+              className="rounded border-2 border-green-500 py-2 text-center block hover:bg-green-100"
+            >
               <FcGoogle className="mr-3 inline text-2xl" />{" "}
               <span className="text-sm">Signup with Google</span>
-            </button>
+            </a>
 
             <p className="text-center text-sm">
               Already have an account?{" "}
@@ -57,7 +58,7 @@ const Login = () => {
           </form>
         </div>
       </section>
-    </Layout>
+    </UnauthenticatedLayout>
   );
 };
 

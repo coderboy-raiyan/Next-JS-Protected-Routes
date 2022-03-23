@@ -2,7 +2,10 @@
 import Link from "next/link";
 import React from "react";
 import { BsCart3 } from "react-icons/bs";
+import useAuth from "./../../hooks/useAuth";
 const Header = () => {
+  const { user, logOut } = useAuth();
+
   return (
     <header>
       <div className="bg-white shadow">
@@ -29,7 +32,14 @@ const Header = () => {
           {/* left side */}
           <ul className="flex items-center space-x-6">
             <li>
-              <Link href="/login">Login</Link>
+              <Link href="/dashboard">Dashboard</Link>
+            </li>
+            <li>
+              {user.email ? (
+                <button onClick={logOut}>Logout</button>
+              ) : (
+                <Link href="/login">Login</Link>
+              )}
             </li>
             <li className="text-2xl text-gray-500">
               <BsCart3 />
