@@ -1,14 +1,14 @@
 import { Provider } from "react-redux";
-import AuthWrapper from "../context/AuthWrapper";
-import "../styles/globals.css";
+import AuthProvider from "../context/AuthProvider";
+import "../styles/tailwind.css";
 import store from "./../redux/store/store";
 
 function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      <AuthWrapper>
+      <AuthProvider>
         <Component {...pageProps} />
-      </AuthWrapper>
+      </AuthProvider>
     </Provider>
   );
 }
